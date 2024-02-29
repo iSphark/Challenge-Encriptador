@@ -8,17 +8,39 @@ botonEncriptar.addEventListener("click", encriptar);
 botonDesencriptar.addEventListener("click", desencriptar);
 
 function encriptar(){
+    var cajaTexto = recuperarTexto ();
+    if(cajaTexto === "") {
+        Swal.fire({
+            icon: 'warning',
+            title: 'No hay texto',
+            text: 'Ingrese texto a desencriptar',
+            showConfirmButton: false,
+            timer: 1800
+        });
+        return;
+    }
     ocultarAdelante();
-    var cajaTexto = recuperarTexto ()
     resultado.textContent = encriptarTexto(cajaTexto);
     document.querySelector(".copiar").style.display = "block";
+    limpiarAreaTexto();
 }
 
 function desencriptar(){
+    var cajaTexto = recuperarTexto ();
+    if(cajaTexto === "") {
+        Swal.fire({
+            icon: 'warning',
+            title: 'No hay texto',
+            text: 'Ingrese texto a desencriptar',
+            showConfirmButton: false,
+            timer: 1800
+        });
+        return;
+    }
     ocultarAdelante();
-    var cajaTexto = recuperarTexto ()
     resultado.textContent = desencriptarTexto(cajaTexto);
     document.querySelector(".copiar").style.display = "block";
+    limpiarAreaTexto();
 }
 
 function recuperarTexto(){
@@ -78,6 +100,10 @@ function desencriptarTexto(textoEntrada) {
         }
     }
     return textoFinal;
+}
+
+function limpiarAreaTexto() {
+    document.querySelector(".texto-encriptar").value = "";
 }
 
 const btnCopiar = document.querySelector(".btn-copiar");
