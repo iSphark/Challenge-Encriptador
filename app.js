@@ -13,7 +13,7 @@ function encriptar(){
         Swal.fire({
             icon: 'warning',
             title: 'No hay texto',
-            text: 'Ingrese texto a desencriptar',
+            text: 'Ingrese texto a encriptar',
             showConfirmButton: false,
             timer: 1800
         });
