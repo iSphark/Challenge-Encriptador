@@ -7,13 +7,23 @@ var robot = document.querySelector(".personaje");
 botonEncriptar.addEventListener("click", encriptar);
 botonDesencriptar.addEventListener("click", desencriptar);
 
-function encriptar(){
-    var cajaTexto = recuperarTexto ();
-    if(cajaTexto === "") {
+function encriptar() {
+    var cajaTexto = recuperarTexto();
+    if (cajaTexto === "") {
         Swal.fire({
             icon: 'warning',
             title: 'No hay texto',
             text: 'Ingrese texto a encriptar',
+            showConfirmButton: false,
+            timer: 1800
+        });
+        return;
+    }
+    if (!validarTexto(cajaTexto)) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Texto inválido',
+            text: 'Solo letras minúsculas y sin acentos',
             showConfirmButton: false,
             timer: 1800
         });
@@ -25,13 +35,23 @@ function encriptar(){
     limpiarAreaTexto();
 }
 
-function desencriptar(){
-    var cajaTexto = recuperarTexto ();
-    if(cajaTexto === "") {
+function desencriptar() {
+    var cajaTexto = recuperarTexto();
+    if (cajaTexto === "") {
         Swal.fire({
             icon: 'warning',
             title: 'No hay texto',
             text: 'Ingrese texto a desencriptar',
+            showConfirmButton: false,
+            timer: 1800
+        });
+        return;
+    }
+    if (!validarTexto(cajaTexto)) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Texto inválido',
+            text: 'Solo letras minúsculas y sin acentos',
             showConfirmButton: false,
             timer: 1800
         });
@@ -43,14 +63,19 @@ function desencriptar(){
     limpiarAreaTexto();
 }
 
-function recuperarTexto(){
+function recuperarTexto() {
     var cajaTexto = document.querySelector(".texto-encriptar");
     return cajaTexto.value;
 }
 
-function ocultarAdelante(){
+function ocultarAdelante() {
     robot.classList.add("ocultar");
     textoNinguno.classList.add("ocultar");
+}
+
+function validarTexto(texto) {
+    var regex = /^[a-z\n\s!@#$%^&*()-_=+[\]{};:'",.<>¡¿?]+$/i;
+    return regex.test(texto);
 }
 
 function encriptarTexto(textoEntrada) {
