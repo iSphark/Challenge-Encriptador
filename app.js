@@ -74,7 +74,7 @@ function ocultarAdelante() {
 }
 
 function validarTexto(texto) {
-    var regex = /^[a-z\n\s!@#$%^&*()-_=+[\]{};:'",.<>¡¿?]+$/i;
+    var regex = /^[^A-ZÁÉÍÓÚÜÑ]+$/;
     return regex.test(texto);
 }
 
